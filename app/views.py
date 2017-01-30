@@ -63,3 +63,8 @@ def oauth_callback(provider):
         db.session.commit()
     login_user(user,True)
     return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
