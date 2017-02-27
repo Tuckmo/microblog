@@ -45,6 +45,9 @@ class User(db.Model):
             self.followed.remove(user)
             return self
 
+    def sorted_posts(self):
+        return self.posts.order_by(Post.timestamp.desc())
+
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count()\
 

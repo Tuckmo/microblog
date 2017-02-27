@@ -5,7 +5,9 @@
     </a>
   </div>
   <div class="media-body">
-      <h4 class="media-heading"><a href="{{ url_for('user', nickname=post.author.nickname) }}"> {{ post.author.nickname }}</a><small>{{ post.timestamp }}</small></h4>
+      <h4 class="media-heading">
+          <a href="{{ url_for('user', nickname=post.author.nickname) }}">{{ post.author.nickname }}</a> said <small>     {{ momentjs(post.timestamp).fromNow() }}</small>
+      </h4>
     <p>{{ post.body }}</p>
   </div>
 </div>
