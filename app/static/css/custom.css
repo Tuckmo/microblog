@@ -1,0 +1,15 @@
+.postBox{
+    width:500px;
+}
+
+.row-fluid{
+    word-wrap: break-word;
+}
+
+.loginButton{
+    max-width: 200px;
+}
+
+textarea{
+    resize: none;
+}
