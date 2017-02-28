@@ -1,4 +1,6 @@
-.idea/workspace.xml
 *.pyc
-config.py
-tmp/
+*.pyo
+app.db
+search.db
+flask
+*.mo
