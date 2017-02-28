@@ -1,12 +1,13 @@
 from flask import render_template, flash, redirect, url_for, current_app, redirect, request, g, session
 from flask_login import login_user, logout_user, current_user, login_required
 from .oauth import OAuthSignIn
-from app import app, db, lm
+from app import app, db, lm, babel
 from .forms import LoginForm, EditForm, PostForm, SearchForm
 from .models import User, Post
 from datetime import datetime
-from config import POST_PER_PAGE, MAX_SEARCH_RESULTS
+from config import POST_PER_PAGE, MAX_SEARCH_RESULTS, LANGUAGES
 from .emails import follower_notification
+from flask_babel import gettext
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -72,7 +73,8 @@ def oauth_callback(provider):
     user = User.query.filter_by(social_id=social_id).first()
     print(user)
     if not user:
-        nickname = User.make_unique_nickname(username)
+        nickname = User.make_valid_nickname(username)
+        nickname = User.make_unique_nickname(nickname)
         user = User(social_id=social_id,nickname=nickname,email=email)
         db.session.add(user)
         db.session.commit()
@@ -185,6 +187,8 @@ def before_request():
         db.session.add(g.user)
         db.session.commit()
         g.search_form = SearchForm()
+    g.locale = get_locale()
+
 
 @app.route('/search', methods=['POST'])
 @login_required
@@ -201,3 +205,8 @@ def search_results(query):
     return render_template('search_results.html',
                            query=query,
                            results=results)
+
+@babel.localeselector
+def get_locale():
+    # return 'es'
+    return request.accept_languages.best_match(LANGUAGES.keys())

@@ -1,12 +1,14 @@
 from app import db, app
 from hashlib import md5
+import flask_whooshalchemy as whooshalchemy
+import re
 
 # import sys
 # if sys.version_info >= (3, 0):
 #     enable_search = False
 # else:
 enable_search = True
-import flask_whooshalchemy as whooshalchemy
+
 
 
 followers = db.Table(
@@ -87,6 +89,10 @@ class User(db.Model):
                 break
             version += 1
         return new_nickname
+
+    @staticmethod
+    def make_valid_nickname(nickname):
+        return re.sub('[^a-zA-Z0-9_\.]', ' ', nickname)
 
 
 class Post(db.Model):

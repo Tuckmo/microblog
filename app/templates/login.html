@@ -4,29 +4,18 @@
 {% block content %}
     {% include 'flash.html' %}
     <div class="well">
-        <h3>Please Sign In</h3>
+        <h3>{{_("Please Sign In")}}</h3>
         <form class="form" method="post" name="login">
-            <div class="help-block">Click on your OAuth Provider login below:</div>
+            <div class="help-block">{{_("Click on your OAuth Provider login below:")}}</div>
             <div class="form-group">
-            <div>
-                {% if current_user.is_authenticated %}
-                    <h2>Hi, {{ current_user.nickname }}!</h2>
-                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
-                {% else %}
-
-                    <a class="btn btn-block btn-social btn-facebook loginButton"  href="{{ url_for('oauth_authorise', provider='facebook') }}" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+                <div>
+                    <a class="btn btn-block btn-social btn-facebook loginButton"  href="{{ url_for('oauth_authorise', provider='facebook') }}"
+                       onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
                         <span class="fa fa-facebook"></span> Sign in with Facebook
                     </a>
-{#                    <p><a href="{{ url_for('oauth_authorise', provider='facebook') }}">Login with Facebook</a></p>#}
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-            </div>
-
-
-
         </form>
     </div>
-
-
-
 {% endblock %}
