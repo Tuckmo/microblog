@@ -9,8 +9,8 @@ SECRET_KEY = 'you-will-never-guess'
 
 OAUTH_CREDENTIALS={
     'facebook': {
-        'id': 2111713519054901,
-        'secret': '77f0514275447b90ec9b940b9f235a8f'
+        'id': 123456789,
+        'secret': 'secret-goes-here'
     }
 }
 
@@ -31,11 +31,11 @@ MAIL_SERVER = 'smtp.gmail.com'
 MAIL_PORT = 465
 MAIL_USE_TLS = False
 MAIL_USE_SSL = True
-MAIL_USERNAME = 'marktuckey.art@gmail.com'
-MAIL_PASSWORD = 'yrllreupvwdscksr'
+MAIL_USERNAME = 'gmail-name'
+MAIL_PASSWORD = 'gmail-password-or-app-key'
 
 #administrator list
-ADMINS = ['marktuckey.art@gmail.com']
+ADMINS = ['email-goes-here']
 
 # pagination
 POST_PER_PAGE = 6
